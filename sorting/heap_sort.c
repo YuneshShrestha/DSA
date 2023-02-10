@@ -8,6 +8,7 @@ void swap(int *d1, int *d2){
 }
 void maxHeapify(int arr[], int n,int i){
     int largest=i;
+    // left & right index of the parent index is found
     int l=2*i + 1 , r= 2* i+2;
     if(l<n && arr[l]>arr[largest]){
         largest=l;
@@ -30,12 +31,13 @@ void heapSort(int arr[], int n){
 //    Delete and sort
    for(int i=n-1; i>=0; i--){
     swap(&arr[0],&arr[i]);
+    // we pass i as argument because the elements after ith index are already sorted so don't need to heapify it
     maxHeapify(arr,i,0);
    }
    
 }
 int main(){
-    int arr[]={12, 11, 13, 5, 6, 7};
+    int arr[]={4,1,3,2,16,9,10,14,8,7};
     int n= sizeof(arr)/sizeof(arr[0]);
     heapSort(arr, n);
     printf("Sorted List: ");
