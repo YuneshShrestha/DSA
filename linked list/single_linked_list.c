@@ -5,6 +5,7 @@ struct node
     int info;
     struct node *next;
 };
+// head to track the address of 1st node, newNode to create a new node and temp to move through each nodes while adding data 
 struct node *head, *newNode, *temp;
 void createLinkedList()
 {
@@ -12,6 +13,9 @@ void createLinkedList()
     head=NULL;
     while (flag)
     {
+        // malloc returns  the pointer to starting address of the memory block i.e void pointer
+        // so you need to typecast is using (struct node *) and 
+        // malloc takes an argument size in this case size of struct node
         newNode=(struct node *)malloc(sizeof(struct node));
         printf("Enter Data: ");
         scanf("%d", &newNode->info);
