@@ -6,7 +6,7 @@ struct node
     struct node *next;
 };
 // head to track the address of 1st node, newNode to create a new node and temp to move through each nodes while adding data 
-struct node *head, *newNode, *temp;
+struct node *head, *newNode, *temp, *anotherHead;
 void createLinkedList()
 {
     int flag=1;
@@ -155,12 +155,49 @@ void deleteAnywhere()
       printf("Element Deleted.");
     }
 }
+void createAndMerge(){
+    struct node *ptr;
+    if(head==NULL){
+        printf("Pick your choice as 1.");
+    }
+    else
+    {
+
+        // Creating
+        anotherHead=NULL;
+        int flag=1;
+        while (flag)
+        {
+            newNode=(struct node *)malloc(sizeof(struct node));
+            printf("Enter Data: ");
+            scanf("%d", &newNode->info);
+            newNode->next=NULL;
+            if(anotherHead==NULL){
+                anotherHead=temp=newNode;
+            }
+            else{
+                temp->next=newNode;
+                temp=newNode;
+            }
+            printf("Do you want to continue? (0/1): ");
+            scanf("%d",&flag);
+        }
+        // Merging
+        ptr= head;
+        while (ptr->next!=NULL)
+        {
+         ptr=ptr->next;
+        }
+        ptr->next=anotherHead;
+    }
+    
+}
 int main(){
     int flag=1,n;
    
     while(flag){
      system("cls");
-        printf("1)Create New Linked List\n2)Traverse List\n3)Insert Data At First:\n4)Insert Data At Last:\n5)Insert Data At Anywhere:\n6)Delete Element At First:\n7)Delete Element At Last:\n8)Delete Data At Anywhere:\nEnter Choice: ");
+        printf("1)Create New Linked List\n2)Traverse List\n3)Insert Data At First:\n4)Insert Data At Last:\n5)Insert Data At Anywhere:\n6)Delete Element At First:\n7)Delete Element At Last:\n8)Delete Data At Anywhere:\n9)Create and merge new linked list:\nEnter Choice: ");
         scanf("%d",&n);
         switch (n)
         {
@@ -187,6 +224,9 @@ int main(){
             break;
         case 8:
             deleteAnywhere();
+            break;
+        case 9:
+            createAndMerge();
             break;
         default:
             printf("\nDon't Act Fool!\n");
