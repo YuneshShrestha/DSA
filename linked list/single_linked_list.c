@@ -192,12 +192,39 @@ void createAndMerge(){
     }
     
 }
+void reverseLinkedList(){
+
+    struct node *prevnode, *currentnode, *nextnode;
+    if(head==NULL){
+        printf("Fill some data first.");
+        return;
+    }
+    prevnode=NULL;
+    currentnode=nextnode=head;
+    while (nextnode!=NULL)
+    {
+     nextnode=currentnode->next;
+     if(prevnode==NULL){
+        currentnode->next=NULL;
+        
+     }   
+     else
+     {
+        currentnode->next=prevnode;
+     }
+     prevnode=currentnode;
+     currentnode=nextnode;
+    }
+    head=prevnode;
+   
+    printf("Linked List is reversed.");
+}
 int main(){
     int flag=1,n;
    
     while(flag){
      system("cls");
-        printf("1)Create New Linked List\n2)Traverse List\n3)Insert Data At First:\n4)Insert Data At Last:\n5)Insert Data At Anywhere:\n6)Delete Element At First:\n7)Delete Element At Last:\n8)Delete Data At Anywhere:\n9)Create and merge new linked list:\nEnter Choice: ");
+        printf("1)Create New Linked List\n2)Traverse List\n3)Insert Data At First:\n4)Insert Data At Last:\n5)Insert Data At Anywhere:\n6)Delete Element At First:\n7)Delete Element At Last:\n8)Delete Data At Anywhere:\n9)Create and merge new linked list:\n9)Reverse Linked List:\nEnter Choice: ");
         scanf("%d",&n);
         switch (n)
         {
@@ -227,6 +254,9 @@ int main(){
             break;
         case 9:
             createAndMerge();
+            break;
+        case 10:
+            reverseLinkedList();
             break;
         default:
             printf("\nDon't Act Fool!\n");
