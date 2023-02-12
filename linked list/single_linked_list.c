@@ -93,13 +93,74 @@ void insertAtAnyWhere(){
       temp->next=newNode;
     }
 }
-
+void deletionAtFirst()
+{
+    struct node *temp;
+    if(head==NULL)
+    {
+        printf("\nYour linked list is empty.\n");
+    }
+    else
+    {
+        temp=head;
+        head=head->next;
+        free(temp);
+        printf("Element Deleted.");
+    }
+}
+void deletionAtLast()
+{
+    struct node *temp, *prev_ptr;
+    if(head==NULL)
+    {
+        printf("\nYour linked list is empty.\n");
+    }
+    else
+    {
+       temp=head;
+       while (temp->next!=NULL)
+       {
+            prev_ptr=temp;
+            temp=temp->next;
+       }
+       prev_ptr->next=NULL;
+       free(temp);
+       printf("Element Deleted.");
+    }
+}
+void deleteAnywhere()
+{
+    struct node *temp, *prev_ptr;
+   if(head==NULL){
+        printf("\nNo Data Available!\n");
+        return;
+    }
+    int key;
+    printf("Which data you want to delete?:");
+    scanf("%d",&key);
+    temp=head;
+    while(temp->info!=key && temp!=NULL)
+    {
+        prev_ptr=temp;
+        temp=temp->next;
+    }
+        
+    if(temp==NULL)
+    {
+        printf("\nNode with the key doesn't exist.\n");
+    }
+    else{
+      prev_ptr->next= temp->next;
+      free(temp);
+      printf("Element Deleted.");
+    }
+}
 int main(){
     int flag=1,n;
    
     while(flag){
      system("cls");
-        printf("1)Create New Linked List\n2)Traverse List\n3)Insert Data At First:\n4)Insert Data At Last:\n5)Insert Data At Anywhere:\nEnter Choice: ");
+        printf("1)Create New Linked List\n2)Traverse List\n3)Insert Data At First:\n4)Insert Data At Last:\n5)Insert Data At Anywhere:\n6)Delete Element At First:\n7)Delete Element At Last:\n8)Delete Data At Anywhere:\nEnter Choice: ");
         scanf("%d",&n);
         switch (n)
         {
@@ -117,6 +178,15 @@ int main(){
             break;
         case 5:
             insertAtAnyWhere();
+            break;
+        case 6:
+            deletionAtFirst();
+            break;
+        case 7:
+            deletionAtLast();
+            break;
+        case 8:
+            deleteAnywhere();
             break;
         default:
             printf("\nDon't Act Fool!\n");
