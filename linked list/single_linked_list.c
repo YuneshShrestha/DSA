@@ -224,7 +224,7 @@ int main(){
    
     while(flag){
      system("cls");
-        printf("1)Create New Linked List\n2)Traverse List\n3)Insert Data At First:\n4)Insert Data At Last:\n5)Insert Data At Anywhere:\n6)Delete Element At First:\n7)Delete Element At Last:\n8)Delete Data At Anywhere:\n9)Create and merge new linked list:\n9)Reverse Linked List:\nEnter Choice: ");
+        printf("1)Create New Linked List\n2)Traverse List\n3)Insert Data At First:\n4)Insert Data At Last:\n5)Insert Data At Anywhere:\n6)Delete Element At First:\n7)Delete Element At Last:\n8)Delete Data At Anywhere:\n9)Create and merge new linked list:\n10)Reverse Linked List:\nEnter Choice: ");
         scanf("%d",&n);
         switch (n)
         {
