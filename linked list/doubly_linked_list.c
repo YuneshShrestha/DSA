@@ -115,6 +115,19 @@ void createAndMerge(){
     
 }
 void reverseLinkedList(){
+    struct node *store;
+    temp=head;
+    while (temp!=NULL)
+    {
+       store = temp->next;
+       temp->next= temp->prev;
+       temp->prev=store;
+       head=temp;
+       temp=store;
+    }
+
+    printf("Data has been reversed.");
+
 }
 int main(){
     int flag=1,n;
