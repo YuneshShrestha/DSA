@@ -6,7 +6,7 @@ struct node
     struct node *next;
     struct node *prev;
 };
-struct node *head, *newNode, *temp, *ptr;
+struct node *head, *newNode, *temp, *ptr, *anotherHead;
 struct node *getNode(){
    newNode=(struct node *)malloc(sizeof(struct node));
    printf("Enter Data: ");
@@ -77,42 +77,119 @@ void insertAtAnyWhere(){
   temp=head;
   printf("After which data you want to insert?: ");
   scanf("%d",&key);
-  while (temp->info!=key && temp!=NULL)
+  while (temp!=NULL && temp->info!=key)
   {
     temp=temp->next;
   }
-  if(temp==NULL){
+  if(temp==NULL)
+  {
     printf("Node doesn't exist.");
   }
-  else{
-    if(temp->next==NULL){
-        insertionAtLast();
-    }
-    else{
-        ptr=getNode();
-        ptr->next= temp->next;
-        temp->next=ptr;
-        ptr->prev=temp;  
+  else
+  {
+    ptr=getNode();
+    ptr->next= temp->next;
+    temp->next=ptr;
+    ptr->prev=temp;  
+    if(ptr->next!=NULL)
         (ptr->next)->prev=ptr;
-        printf("Data has been inserted.");
-    }
-    
+    printf("Data has been inserted.");  
   }
  
 }
 void deletionAtFirst()
 {
-    
+    if(head==NULL){
+        return;
+    }
+    temp=head;
+    head=temp->next;
+    head->prev=NULL;
+    free(temp);
+    printf("First data has been deleted.");
 }
 void deletionAtLast()
 {
-    
+     if(head==NULL){
+        return;
+     }
+     temp=head;
+     while (temp->next!=NULL)
+    {
+        temp=temp->next;
+    }
+    (temp->prev)->next=NULL;
+    free(temp);
+    printf("Last data has been deleted.");
+
 }
 void deleteAnywhere()
 {
+    if(head==NULL)
+    {
+        return;
+    }
+    int data;
+    printf("Available data: ");
+    traverseLinkedList();
+    printf("\n");
+    printf("Which data you want to delete?: ");
+    scanf("%d", &data);
+    temp=head;
+    while (temp!=NULL && temp->info!=data)
+    {
+        temp=temp->next;
+    }
+
+    if(temp==NULL)
+    {
+        printf("Node doesn't exist.");
+    }
+    
+    else
+    {
+        if (temp==head)
+        {
+            head=head->next;
+        }
+        if(temp->prev!=NULL){
+            (temp->prev)->next=temp->next;
+        }
+        if(temp->next!=NULL){
+            (temp->next)->prev=temp->prev;
+        }
+        free(temp);
+    }
+    
+    printf("Chosen data has been deleted.");
 }
 void createAndMerge(){
-    
+    int flag=1;
+    anotherHead=NULL;
+    // Creating
+    while (flag)
+    {
+        ptr=getNode();
+        if(anotherHead==NULL){
+            anotherHead=temp=ptr;
+        }
+        else{
+            temp->next=ptr;
+            ptr->prev=temp;
+            temp=ptr;
+        }
+        printf("Do you want to continue? (0/1): ");
+        scanf("%d",&flag);
+    } 
+    // Merging
+    temp=head;
+    while (temp->next!=NULL)
+    {
+       temp=temp->next;
+    }
+    temp->next=anotherHead;
+    anotherHead->prev=temp;
+    printf("Entered data has been merged.");
 }
 void reverseLinkedList(){
     struct node *store;

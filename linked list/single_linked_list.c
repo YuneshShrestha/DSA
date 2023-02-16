@@ -139,7 +139,7 @@ void deleteAnywhere()
     printf("Which data you want to delete?:");
     scanf("%d",&key);
     temp=head;
-    while(temp->info!=key && temp!=NULL)
+    while(temp!=NULL && temp->info!=key)
     {
         prev_ptr=temp;
         temp=temp->next;
