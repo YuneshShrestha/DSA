@@ -22,7 +22,7 @@ void insertValue(){
     hashKey=val%SIZE;
     for (i = 0; i < SIZE; i++)
     { 
-        tempHashKey=(hashKey+i)%SIZE;
+        tempHashKey=(hashKey+(i*i))%SIZE;
         if(hashT[tempHashKey]==0)
         {
             hashT[tempHashKey]=val;
@@ -32,18 +32,18 @@ void insertValue(){
     }
     if(i==SIZE)
     {
-        printf("Element can't be inserted.");
+        printf("\nElement can't be inserted.");
     }
 }
 void search()
 {
-    int hashKey,tempHashKey,i,n;
+    int hashKey,i,n, tempHashKey;
     printf("Value you want to search?: ");
     scanf("%d",&n);
     hashKey=n%SIZE;
     for (i = 0; i < SIZE; i++)
     { 
-        tempHashKey=(hashKey+i)%SIZE;
+        tempHashKey=(hashKey+(i*i))%SIZE;
         if(hashT[tempHashKey]==n)
         {
             printf("Availabe!\n");
