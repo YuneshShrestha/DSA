@@ -1,10 +1,6 @@
-//  Quadratic probing avoids the clustering (group of element ekai thau ma aaunu jaslae garda searching time badhxa) 
-//  that can occur with linear probing, by probing in a non-sequential order. 
-//  Quadratic probing can still result in clustering, but this tends 
-//  to be less severe than with linear probing. 
 #include<stdio.h>
 #include<stdlib.h>
-#define SIZE 10
+#define SIZE 11
 int hashT[SIZE];
 void initializeWithZero(){
     for (int i = 0; i < SIZE; i++)
@@ -20,13 +16,17 @@ void printTable(){
     }
 }
 void insertValue(){
-    int hashKey, tempHashKey, val, i;
+    int hashKey1, hashKey2, tempHashKey, val, i;
     printf("Enter the value: ");
     scanf("%d",&val);
-    hashKey=val%SIZE;
+    // SIZE prime hunu paro ra double hashed hunu paro jaslae garda kunai khali  space rahadaina
+    // NOTE: Choosing a proper hash function for double hashing requires selecting two hash functions 
+    // that produce different output values and that are relatively prime 
+    hashKey1=val%SIZE;
+    hashKey2=8-(val%8);
     for (i = 0; i < SIZE; i++)
     { 
-        tempHashKey=(hashKey+(i*i))%SIZE;
+        tempHashKey=(hashKey1+i*hashKey2)%SIZE;
         if(hashT[tempHashKey]==0)
         {
             hashT[tempHashKey]=val;
@@ -41,14 +41,15 @@ void insertValue(){
 }
 void search()
 {
-    int hashKey,i,n, tempHashKey;
+    int hashKey1, hashKey2,i,val, tempHashKey;
     printf("Value you want to search?: ");
-    scanf("%d",&n);
-    hashKey=n%SIZE;
+    scanf("%d",&val);
+    hashKey1=val%SIZE;
+    hashKey2=8-(val%8);
     for (i = 0; i < SIZE; i++)
     { 
-        tempHashKey=(hashKey+(i*i))%SIZE;
-        if(hashT[tempHashKey]==n)
+        tempHashKey=(hashKey1+i*hashKey2)%SIZE;
+        if(hashT[tempHashKey]==val)
         {
             printf("Availabe!\n");
             break;
