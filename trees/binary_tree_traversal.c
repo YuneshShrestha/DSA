@@ -22,6 +22,35 @@ struct node *createBinaryTree(){
     newNode->rcptr=createBinaryTree();
     return newNode;
 }    
+void preorder(struct node *root)
+{
+    if(root!=0)
+    {
+        printf("%d ",root->data);
+        preorder(root->lcptr);
+        preorder(root->rcptr);
+    }
+    
+}
+void inorder(struct node *root)
+{
+    if(root!=0)
+    {
+        inorder(root->lcptr);
+        printf("%d ",root->data);
+        inorder(root->rcptr);
+    }
+    
+}
+void postorder(struct node *root)
+{
+    if(root!=0)
+    {
+        postorder(root->lcptr);
+        postorder(root->rcptr);
+        printf("%d ",root->data);
+    }
+}
 int main()
 {
     int flag=1, choice;
@@ -30,13 +59,25 @@ int main()
     while (flag)
     {
         system("cls");
-        printf("1.Create Tree.\n");
+        printf("1.Create Binary Tree.\n2.Pre-Order Traversal.\n3.In-Order Traversal.\n4.Post-Order Traversal.\n");
         printf("Please Make Choice:\n");
         scanf("%d",&choice);
         switch (choice)
         {
         case 1:   
             root=createBinaryTree();
+            break;
+        case 2:   
+            printf("Pre-Order: ");
+            preorder(root);
+            break;
+        case 3:   
+            printf("In-Order: ");
+            inorder(root);
+            break;
+        case 4:   
+            printf("Post-Order: ");
+            postorder(root);
             break;
         default:
             printf("DUM DUM DUM DUM DUM");
