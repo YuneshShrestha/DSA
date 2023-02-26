@@ -149,13 +149,99 @@ void search()
         printf("Data not available.\n");
     }
 }
+// inorder succesor means smallest value from right branch 
+int inorderSuccesor(struct node *r)
+{
+    int data;
+    while (r!=NULL)
+    {
+       data=r->info;
+       r=r->lcptr;
+    }
+    return data;
+}
+void delete(struct node *ptr, int key)
+{
+    while (ptr!=NULL && ptr->info!=key)
+    {
+        parent=ptr;
+        if(key>ptr->info)
+        {
+            ptr=ptr->rcptr;
+        }
+        else
+        {
+            ptr=ptr->lcptr;
+        }
+    }
+    if(ptr==NULL)
+    {
+        printf("Data not available.\n");
+    }
+    else
+    {
+        // Has no child
+        if(ptr->lcptr==NULL && ptr->rcptr==NULL)
+        {
+            if(parent->info <key)
+            {
+                parent->rcptr=NULL;
+            }
+            else
+            {
+                parent->lcptr=NULL;
+            }
+            printf("Data has been deleted.\n");
+
+        }
+        // Has one child
+        else if(ptr->lcptr==NULL || ptr->rcptr==NULL)
+        {
+            if(parent->info<key)
+            {
+                if(ptr->rcptr==NULL)
+                {
+                    parent->rcptr=ptr->lcptr;
+                }
+                else
+                {
+                    parent->rcptr=ptr->rcptr;
+                }
+            }
+            else
+            {
+                if(ptr->rcptr==NULL)
+                {
+                    parent->lcptr=ptr->lcptr;
+                }
+                else
+                {
+                    parent->lcptr=ptr->rcptr;
+                }
+            }
+            printf("Data has been deleted.\n");
+
+        }
+        // Has two child
+        else
+        {
+            int del_data = inorderSuccesor(ptr->rcptr);
+            // delete the inorderSuccesor element from the tree
+            delete(root, del_data);
+            // after deleting change the value of element to be deleted by inorderSuccesor element 
+            ptr->info=del_data;
+            printf("Data has been deleted.\n");
+        }
+    }
+}
+
 int main()
 {
-     int flag=1, choice;
+     int flag=1, choice, val;
     while (flag)
     {
         system("cls");
-        printf("1.Create BST\n2.Print BST\n3.Insert Data in BST\n4.Search Data\n");
+        printf("1.Create BST\n2.Print BST\n3.Insert Data in BST\n4.Search Data\n5.Delete Data\n");
         printf("Please Make Choice:\n");
         scanf("%d",&choice);
         switch (choice)
@@ -173,8 +259,13 @@ int main()
         case 4:
             search();
             break;
+        case 5:
+            printf("Which value do you want to delete?:");
+            scanf("%d",&val);
+            delete(root,val);
+            break;
         default:
-            printf("DUM DUM DUM DUM DUM");
+            printf("DUMP DUMP DUMP DUMP DUMP");
             break;
         }
         printf("Do you want to continue program?(0/1): ");
