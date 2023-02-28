@@ -104,7 +104,8 @@ void deletionAtFirst()
     }
     temp=head;
     head=temp->next;
-    head->prev=NULL;
+    if(head!=NULL)
+        head->prev=NULL;
     free(temp);
     printf("First data has been deleted.");
 }
