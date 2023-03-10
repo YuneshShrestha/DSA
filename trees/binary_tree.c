@@ -77,7 +77,7 @@ int main()
     while (flag)
     {
         system("cls");
-        printf("1.Create Binary Tree.\n2.Pre-Order Traversal.\n3.In-Order Traversal.\n4.Post-Order Traversal. 5) Print tree.\n");
+        printf("1.Create Binary Tree.\n2.Pre-Order Traversal.\n3.In-Order Traversal.\n4.Post-Order Traversal.\n 5. Print tree.\n");
         printf("Please Make Choice:\n");
         scanf("%d",&choice);
         switch (choice)

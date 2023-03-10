@@ -38,34 +38,42 @@ struct node *rightRotation(struct node *p){
     struct node *ar=a->rcptr;
     a->rcptr=p;
     p->lcptr=ar;
-    a->height=max(height(a->lcptr), height(a->rcptr))+1;
+    // First calculate heght of p because a depends on height of p (i.e. a->rcptr=p)
     p->height=max(height(p->lcptr), height(p->rcptr))+1;
-
+    // Then a
+    a->height=max(height(a->lcptr), height(a->rcptr))+1;
     return a;
 }
 struct node *leftRotation(struct node *p){
     struct node *b=p->rcptr;
     struct node *bl=b->lcptr;
-    p->rcptr=bl;
     b->lcptr=p;
-     b->height=max(((b->lcptr != NULL) ? height(b->lcptr) : 0), ((b->rcptr != NULL) ? height(b->rcptr) : 0))+1;
-    p->height=max(((p->lcptr != NULL) ? height(p->lcptr) : 0), ((p->rcptr != NULL) ? height(p->rcptr) : 0))+1;
+    p->rcptr=bl;
+    // First calculate heght of p because b depends on height of p (i.e. b->lcptr=p;)
+    p->height=max(height(p->lcptr),height(p->rcptr))+1;
+    // Then b
+    b->height=max(height(b->lcptr), height(b->rcptr))+1;
     return b;
 }
 struct node *insert(struct node *n, int info){
+    // if root then direct return with creation of new node
     if(n==NULL)
         return getptr(info);
+    // Check recursively where the info data fits in a tree and return(i.e insert) only when the node has no adjacent vertices
     if(info<n->info)
         n->lcptr=insert(n->lcptr, info);
     else if(info>n->info)
         n->rcptr=insert(n->rcptr, info);
-    // This code will run from leaf node
+    else    
+        return n;
+    // This code will run from root node
     n->height = 1 + max(height(n->lcptr), height(n->rcptr));
+    printf("Height of %d: %d\n", n->info,n->height);
     int bf = balanceFactor(n);
     // Left Left
     if(bf>1 && info < n->lcptr->info)
     {
-        printf("Here");
+        // Make the head part
         return rightRotation(n);
     }
     // Right Right
@@ -108,35 +116,16 @@ void printTree(struct node *froot, int level)
 
 int main()
 {
-    //  int flag=1, choice, val;
-    // while (flag)
-    // {
-    //     system("cls");
-    //     printf("1.Insert Data on AVL Tree\n2.Print AVL Tree");
-    //     printf("Please Make Choice:\n");
-    //     scanf("%d",&choice);
-    //     switch (choice)
-    //     {
-    //     case 1:   
-    //         creation();
-    //         break;
-    //     case 2:
-    //         printf("AVL Tree: \n");
-    //         printTree(root, 0);
-    //         break;
-    //     default:
-    //         printf("DUMP DUMP DUMP DUMP DUMP");
-    //         break;
-    //     }
-    //     printf("Do you want to continue program?(0/1): ");
-    //     scanf("%d",&flag);
-    // }
-    root = insert(root,1);
-    root = insert(root,2);
-
-    root = insert(root,3);
-
-    root = insert(root,4);
+     int flag=1, val;
+    while (flag)
+    {
+        printf("Enter Data: ");
+        scanf("%d",&val);
+        root = insert(root,val);
+        printf("Do you want to continue program?(0/1): ");
+        scanf("%d",&flag);
+    }
+    system("cls");
     printf("AVL Tree: \n");
     printTree(root,0);
 
