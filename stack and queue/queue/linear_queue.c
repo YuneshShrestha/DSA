@@ -31,7 +31,7 @@ void withoutShiftDequeue(struct linearQueue *q){
         q->front++;
     }
 }
-// Without shift dequeue
+// With shift dequeue
 
 void shiftDequeue(struct linearQueue *q){
    if (q->rear < q->front) {
