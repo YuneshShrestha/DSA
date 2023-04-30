@@ -36,7 +36,7 @@ void shellSort(int arr[]){
 
 }
 int main(){
-    int arr[SIZE]={23, 29, 15, 19, 31, 7, 9, 5, 2};
+    int arr[SIZE]={25,31,17,21,33,9,11,7,3};
     shellSort(arr);
     printf("Sorted List: ");
     for(int i=0; i<SIZE; i++){
