@@ -7,7 +7,8 @@ int main(){
     cin>>element;
     while (start<=end)
     {
-        int mid=(start+end)/2;
+        // we are calculating mid like this to prevent integer overflow
+        int mid=start+(end-start)/2;
         if(data[mid]==element)
         {
             reqdIndex=mid;

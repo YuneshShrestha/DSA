@@ -22,7 +22,7 @@ int main()
     int n=sizeof(arr)/sizeof(arr[0]);
     int start = 0, end= n-1;
     while(start<=end){
-        int mid=(start+end)/2;
+        int mid=start+(end-start)/2;
         int prev=(mid+n-1)%n;
         int next=(mid+1)%n;
         if(arr[prev]>=arr[mid] && arr[next]>=arr[mid])

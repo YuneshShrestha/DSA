@@ -5,7 +5,7 @@ int firstOccurence(int data[], int start, int end, int element){
     int res=-1;
     while (start<=end)
     {
-        int mid=(start+end)/2;
+        int mid=start+(end-start)/2;
         if(data[mid]==element)
         {
             res=mid;
@@ -28,7 +28,7 @@ int lastOccurence(int data[], int start, int end, int element){
      int res=-1;
     while (start<=end)
     {
-        int mid=(start+end)/2;
+        int mid=start+(end-start)/2;
         if(data[mid]==element)
         {
             res=mid;

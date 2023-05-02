@@ -21,7 +21,7 @@ int bs(int arr[], int start, int end, int element){
     int mid=-1;
     while(start<=end)
     {
-        mid=(start+end)/2;
+        mid=start+(end-start)/2;
         if(arr[mid]==element)
         {
             break;
@@ -47,7 +47,7 @@ int main()
     cout<<"Find Element: ";
     cin>>target;
     while(start<=end){
-        int mid=(start+end)/2;
+        int mid=start+(end-start)/2;
         int prev=(mid+n-1)%n;
         int next=(mid+1)%n;
         if(arr[prev]>=arr[mid] && arr[next]>=arr[mid])

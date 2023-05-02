@@ -20,7 +20,7 @@ int main()
     cout<<"Enter number you want to search: ";
     cin>>target;
     while(start<=end){
-        mid=(start+end)/2;
+        mid=start+(end-start)/2;
         if(arr[mid]==target){
             res=mid;
             break;
