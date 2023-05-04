@@ -1,0 +1,26 @@
+BINARY SEARCH:
+
+binary_search(startaddress, 
+              endaddress, valuetofind)
+Parameters :
+startaddress: the address of the first 
+              element of the array.
+endaddress: the address of the next contiguous 
+            location of the last element of the array.
+valuetofind: the target value which we have 
+             to search for.
+Returns :
+true if an element equal to valuetofind is found, else false.
+
+LOWER AND UPPER BOUND:
+
+Iterator lower_bound (Iterator first, Iterator last, const val):
+lower_bound returns an iterator pointing to the first element in the range 
+[first,last] which has a value not less than ‘val’  and if the value is not present in the vector 
+then it returns the end iterator.
+
+Iterator upper_bound (Iterator first, Iterator last, const val)
+upper_bound returns an iterator pointing to the first element in the range [first,last] which 
+has a value greater than ‘val’ and if the value is not present in the vector then it returns 
+the end iterator.
+
