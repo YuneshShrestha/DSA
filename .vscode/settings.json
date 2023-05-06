@@ -3,6 +3,7 @@
     "files.associations": {
         "*.scss": "sass.hover",
         "deque": "c",
-        "vector": "c"
+        "vector": "c",
+        "algorithm": "cpp"
     }
 }
