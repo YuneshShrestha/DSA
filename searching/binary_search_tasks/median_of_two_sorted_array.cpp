@@ -3,7 +3,7 @@ using namespace std;
 double median(int arr1[], int arr2[], int n1, int n2)
 {
     
-    if(n1<n2){
+    if(n1>n2){
        return median(arr2,arr1,n2,n1);
     }
     int start=0, end=n1;
