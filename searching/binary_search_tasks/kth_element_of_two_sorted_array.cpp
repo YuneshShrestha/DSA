@@ -2,6 +2,7 @@
 using namespace std;
 int findKthElement(int arr1[], int arr2[], int n1, int n2, int k)
 {
+    // Always use binary search on small array to reduce search space which reduces time complexity
     if(n1>n2)
     {
         return findKthElement(arr2, arr1, n2, n1, k);
@@ -12,6 +13,7 @@ int findKthElement(int arr1[], int arr2[], int n1, int n2, int k)
     int low=max(0, k-n2), high=min(k, n1);
     while(low<=high)
     {
+    //  cut2=k-cut1 ensures there are only k elements on left half
         int cut1=(low+high) /2, cut2=k-cut1;
         int l1=cut1==0?INT_MIN:arr1[cut1-1];
         int l2=cut2==0?INT_MIN:arr2[cut2-1];
